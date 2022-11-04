@@ -5,9 +5,23 @@ const addToDoBtn = document.querySelector('#add-todo');
 
 const USER_NAME = 'user-name';
 const ADD_TO_DO = 'add-to-do';
+const ToDoList = [];
+
+const showBackDrop = (type) => {
+  //will use it when greeting too, so different types will be
+  backdrop.classList.add('visible');
+  addModalContent(type); //will add form for name or todo input
+  modal.classList.add('visible');
+};
 
 const removeBackdrop = () => {
   backdrop.classList.remove('visible');
+};
+
+const hideBackdrop = () => {
+  backdrop.classList.remove('visible');
+  modal.innerHTML = '';
+  //modal.classList.remove('visible')
 };
 
 const resetModal = () => {
@@ -16,11 +30,22 @@ const resetModal = () => {
   removeBackdrop();
 };
 
+const addToDoItem = (value) => {
+  ToDoList.push({ title: value, completed: false });
+  //add logic to render task
+  return ToDoList;
+};
+
 const addTaskHandler = (ev) => {
   ev.preventDefault();
-  console.log('form submitted handler');
-  //implement logic to consume data here
-  resetModal();
+  const input = ev.target.querySelector('input');
+  if (input.value.trim()) {
+    addToDoItem(input.value.trim());
+    resetModal();
+    console.log(ToDoList);
+  } else {
+    input.classList.add('error');
+  }
 };
 
 const addModalContent = (type) => {
@@ -36,27 +61,12 @@ const addModalContent = (type) => {
       'create-task'
     );
     modal.append(formWrapper);
-    const formBtn = document.querySelector(
-      '#add-task-form button[type="submit"]'
-    );
-    formBtn.addEventListener('click', addTaskHandler);
+    const form = document.querySelector('#add-task-form');
+    form.addEventListener('submit', addTaskHandler);
   } else if (type === USER_NAME) {
     //call add name from Gareth with different input type to handle user name and store it
     return 'user-name';
   }
-};
-
-const showBackDrop = (type) => {
-  //will use it when greeting too, so different types will be
-  backdrop.classList.add('visible');
-  addModalContent(type); //will add form for name or todo input
-  modal.classList.add('visible');
-};
-
-const hideBackdrop = () => {
-  backdrop.classList.remove('visible');
-  modal.innerHTML = '';
-  //modal.classList.remove('visible')
 };
 
 const addToDoHandler = () => {
@@ -78,4 +88,4 @@ function createForm(formId, labelText, inputId) {
 }
 
 addToDoBtn.addEventListener('click', addToDoHandler);
-modalCloseBtn.addEventListener('click', resetModal)
+modalCloseBtn.addEventListener('click', resetModal);

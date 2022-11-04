@@ -47,7 +47,9 @@ li {
 .visible {
   display: block !important;
 }
-
+.error {
+  border: 2px solid red;
+}
 /*end general styles*/
 
 /*heading action*/
