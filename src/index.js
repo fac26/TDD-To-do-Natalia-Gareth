@@ -28,7 +28,7 @@ const addModalContent = (type) => {
     const titleEl = modal.querySelector('.form-title');
     const formWrapper = document.createElement('div');
     formWrapper.classList.add('form-wrapper');
-    titleEl.innerHTML = 'title';
+    titleEl.innerHTML = 'Create your to-do task';
     //call create form Gareth with different input type to add-to-do use input type text
     formWrapper.innerHTML = createForm(
       'add-task-form',
