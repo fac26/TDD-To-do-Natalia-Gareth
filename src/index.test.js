@@ -51,9 +51,10 @@ test('click button submit should remove form from modal',()=>{
 //   equal(actual, expected);
 // })
 
-test('fn should populate div with new html form', () => {
-  const actual = createTaskHtml();
-  const expected = inputFormDiv.innerHTML;
+test('createForm() should return form', () => {
+  const form = createForm();
+  const actual = /^\<form/.test(form);
+  const expected = true;
   equal(actual, expected);
 })
 
