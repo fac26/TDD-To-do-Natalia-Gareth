@@ -4,15 +4,32 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="stylesheet.css" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="./src/test-helpers.js" defer></script>
+    <script src="./src/index.js" defer></script>
+    <script src="./src/index.test.js" defer></script>
     <title>To Do</title>
   </head>
   <body>
     <header>
       <h1>To Do</h1>
     </header>
-    <script src="./src/test-helpers.js"></script>
-    <script src="./src/index.js"></script>
-    <script src="./src/index.test.js"></script>
+    <div id="backdrop">
+      <div class="modal">
+        <button class="modal-close-btn">X</button>
+        <h3 class="form-title"></h3>
+      </div>
+    </div>
+    <div class="heading-actions">
+      <form action="">
+        <label for="filter">Filter</label>
+        <select name="filter" id="filter">
+          <option value="ongoing" selected>All</option>
+          <option value="done">Complited</option>
+          <option value="ongoing" selected>Uncompleted</option>
+        </select>
+      </form>
+      <button id="add-todo">Add TO-DO</button>
+    </div>
   </body>
 </html>
