@@ -17,22 +17,69 @@ test('when button Add-to-do was clicked, modal shows form with id=add-task-form'
 test('click submit should remove form from modal',()=>{
     const form = document.getElementById('add-task-form');
     const button = form.querySelector('button[type="submit"]');
-    form.querySelector('input').value='xxx';
-    button.click();//we can't listen to submit event here?    
+    form.querySelector('input').value='remove-form-test';
+    button.click();//we can't listen to submit event here? 
     const actual=document.body.contains(form);
-    const expected=false
+    const expected=false;
     equal(actual, expected);
-    ToDoList.length=0;
+    const id = ToDoList.find(el=> el.title === 'remove-form-test').id;
+    toDoListDOM.removeChild(document.getElementById(id));
+    ToDoList.splice(ToDoList.findIndex(el=>el.id===id), 1);
 });
 
 test('addToDoItem("handle event listener") should add item to ToDoList array', ()=>{
-    addToDoItem('handle event listener');
-    const actual=ToDoList[0].title;
-    const expected='handle event listener';
+    addToDoItem('add item to ToDoList');
+    const task = ToDoList.find(el=>el.title==='add item to ToDoList');
+    const actual= task? '[item in ToDoList]': '[item was\'t found in ToDoList]';
+    const expected='[item in ToDoList]';
     equal(actual, expected); 
-    ToDoList.length=0;
+    console.log(ToDoList)
+    /*toDoListDOM.removeChild(document.getElementById(task.id));
+    ToDoList.splice(ToDoList.findIndex(el=>el.id===task.id), 1);*/
 });
 
+test('createLi() should return li HTML element',()=>{
+    const li = createLi({title:'test <li>', completed:false, id:'test-li'});
+    const expected = 'LI'
+    const actual = li.tagName;
+    equal(actual, expected);
+});
+
+test('createLi({title:"test", completed: true}) should return input\'s dataset.completed equal to true ',()=>{
+    const li = createLi({title:'test', completed: true, id:'test-li-dataset'});
+    const expected = 'true';//from DOM
+    const actual = li.dataset.completed;
+    equal(actual, expected);
+});
+
+test ('toggleCompleted() ev handler should toggle dataset.completed of li el',()=>{
+    addToDoItem('test toggleCompleted function');
+    const task = ToDoList.find(el=>el.title==='test toggleCompleted function');
+    const input = document.getElementById(task.id).querySelector('input');
+    input.click();
+    console.log('clicked');
+    let expected = 'data-completed = true';//from DOM
+    let actual = `data-completed = ${input.closest('li').dataset.completed}`;
+    equal(actual, expected);
+    input.click();
+    console.log('clicked');
+    expected = 'data-completed = false';//from DOM
+    actual = `data-completed = ${input.closest('li').dataset.completed}`;
+    equal(actual, expected);
+    console.log(ToDoList)
+});
+
+test ('toggleCompleted() ev handler should find the task in ToDoList array and toggle task.completed value',()=>{
+    addToDoItem('toggle completed');
+    const task = ToDoList.find(el=>el.title==='toggle completed');    
+    const input = document.getElementById(task.id).querySelector('input[type="checkbox"]');   
+    input.click();    
+    console.log('clicked');
+    let expected = `{title: 'toggle completed', completed: true}`;
+    let actual = `{title: '${task.title}', completed: ${task.completed}}`;
+    equal(actual, expected);
+    
+});
 /***************************************************************** */
 // Create form html tests
 
