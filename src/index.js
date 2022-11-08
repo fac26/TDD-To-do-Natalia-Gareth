@@ -30,11 +30,19 @@ const resetModal = () => {
   removeBackdrop();
 };
 
+const toggleTick=(li, status)=>{
+  /*const label = window.getComputedStyle(li.querySelector('label'), '::before');
+  if(status===true){
+    label.content='✔️';
+  }*/
+}
+
 const toggleCompleted = (ev) => {
   const li = ev.target.closest('li');  
   const task = ToDoList.find(el=> el.id === li.getAttribute('id'));
   task.completed = !task.completed;//toggle
   li.dataset.completed = task.completed;
+  toggleTick(li, task.completed);
 };
 
 const createLi = (newTask) => {
@@ -51,7 +59,6 @@ const createLi = (newTask) => {
 };
 
 const renderTask = (task) => {
-  console.log(task);
   const taskElement = createLi(task);
   toDoListDOM.prepend(taskElement); //add task to the top
 };
@@ -59,7 +66,6 @@ const renderTask = (task) => {
 const addToDoItem = (value) => {
   const task = { title: value, completed: false, id: new Date().getTime().toString()};
   ToDoList.push(task);
-  console.log(ToDoList)
   renderTask(task);
 };
 
@@ -115,3 +121,4 @@ function createForm(formId, labelText, inputId) {
 
 addToDoBtn.addEventListener('click', addToDoHandler);
 modalCloseBtn.addEventListener('click', resetModal);
+

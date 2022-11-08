@@ -34,6 +34,8 @@ test('addToDoItem("handle event listener") should add item to ToDoList array', (
     const expected='[item in ToDoList]';
     equal(actual, expected); 
     console.log(ToDoList)
+    toDoListDOM.innerHTML='';
+    ToDoList.length=0;
     /*toDoListDOM.removeChild(document.getElementById(task.id));
     ToDoList.splice(ToDoList.findIndex(el=>el.id===task.id), 1);*/
 });
@@ -50,6 +52,8 @@ test('createLi({title:"test", completed: true}) should return input\'s dataset.c
     const expected = 'true';//from DOM
     const actual = li.dataset.completed;
     equal(actual, expected);
+    toDoListDOM.innerHTML='';
+    ToDoList.length=0;
 });
 
 test ('toggleCompleted() ev handler should toggle dataset.completed of li el',()=>{
@@ -66,7 +70,8 @@ test ('toggleCompleted() ev handler should toggle dataset.completed of li el',()
     expected = 'data-completed = false';//from DOM
     actual = `data-completed = ${input.closest('li').dataset.completed}`;
     equal(actual, expected);
-    console.log(ToDoList)
+    ToDoList.length=0;
+    toDoListDOM.innerHTML='';
 });
 
 test ('toggleCompleted() ev handler should find the task in ToDoList array and toggle task.completed value',()=>{
@@ -78,7 +83,8 @@ test ('toggleCompleted() ev handler should find the task in ToDoList array and t
     let expected = `{title: 'toggle completed', completed: true}`;
     let actual = `{title: '${task.title}', completed: ${task.completed}}`;
     equal(actual, expected);
-    
+    ToDoList.length=0;
+    toDoListDOM.innerHTML='';
 });
 /***************************************************************** */
 // Create form html tests
