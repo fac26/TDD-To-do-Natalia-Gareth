@@ -30,15 +30,16 @@
       <form action="">
         <label for="filter">Filter</label>
         <select name="filter" id="filter">
-          <option value="ongoing" selected>All</option>
+          <option value="all" selected>All</option>
           <option value="done">Complited</option>
           <option value="ongoing" selected>Uncompleted</option>
         </select>
       </form>
       <button id="add-todo">Add TO-DO</button>
     </div>
-    <div>
-      <ul class="to-do-list"></ul>
+    <div class="todo-list--container">
+      <ul class="todo-list"></ul>
+      <ul class="completed-todo-list"></ul>
     </div>
   </body>
 </html>

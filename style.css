@@ -79,7 +79,7 @@ li {
 }
 
 .modal-close-btn {
-  color: rgb(147, 1, 1);  
+  color: rgb(147, 1, 1);
   border: 1px solid rgb(var(--main-purple-color));
   border-radius: 5px;
   float: right;
@@ -91,10 +91,33 @@ li {
 .modal-close-btn:hover {
   color: red;
   background: white;
-  border: 2px solid #f0f0f0;  
+  border: 2px solid #f0f0f0;
 }
 
 /*end heading action*/
+
+/*to-do-list block */
+.todo-list--container {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 80%;
+}
+.todo-list > * {
+  display: flex;
+  justify-content: space-between;
+  margin: 2rem auto;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid black;
+  max-width: 700px;
+}
+/*.to-do-item label::before {
+  content: '';/*✔️/*
+  width: 22px;
+  height: 25px;
+  border: 2px solid black;
+  position: absolute;
+}*/
+/*end to-do-list block*/
 
 @media only screen and (min-width: 800px) {
   .modal {
