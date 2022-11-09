@@ -43,7 +43,11 @@ const toggleCompleted = (ev) => {
   const task = ToDoList.find(el=> el.id === li.getAttribute('id'));
   task.completed = !task.completed;//toggle
   li.dataset.completed = task.completed;
-  toggleTick(li, task.completed);
+  if(task.completed===true){
+    toDoListDOMcompleted.prepend(li);
+  } else {
+    toDoListDOM.prepend(li);
+  }
 };
 
 const createLi = (newTask) => {

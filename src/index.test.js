@@ -72,6 +72,7 @@ test ('toggleCompleted() ev handler should toggle dataset.completed of li el',()
     equal(actual, expected);
     ToDoList.length=0;
     toDoListDOM.innerHTML='';
+    toDoListDOMcompleted.innerHTML='';
 });
 
 test ('toggleCompleted() ev handler should find the task in ToDoList array and toggle task.completed value',()=>{
@@ -85,6 +86,22 @@ test ('toggleCompleted() ev handler should find the task in ToDoList array and t
     equal(actual, expected);
     ToDoList.length=0;
     toDoListDOM.innerHTML='';
+    toDoListDOMcompleted.innerHTML='';
+});
+test ('toggleCompleted() ev handler should display task in appropriate list',()=>{
+    addToDoItem('move list');
+    const task = ToDoList.find(el=>el.title==='move list'); 
+    const input = document.getElementById(task.id).querySelector('input[type="checkbox"]');   
+    input.click();    
+    console.log('clicked');
+    let expected = '[completed tasks list contains task = true]';
+    let actual = `[completed tasks list contains task = ${toDoListDOMcompleted.contains(toDoListDOMcompleted.childNodes[0])}]`;
+    equal(actual, expected);
+    input.click();    
+    console.log('clicked');
+    expected = '[incomplete tasks list contains task = true]';
+    actual = `[incomplete tasks list contains task = ${toDoListDOM.contains(toDoListDOM.childNodes[0])}]`;
+    equal(actual, expected);   
 });
 /***************************************************************** */
 // Create form html tests

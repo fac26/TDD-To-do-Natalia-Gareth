@@ -102,6 +102,7 @@ li {
   margin-right: auto;
   max-width: 80%;
 }
+.completed-todo-list>*,
 .todo-list > * {
   display: flex;
   justify-content: space-between;
