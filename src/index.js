@@ -3,6 +3,7 @@ const modal = document.querySelector('.modal');
 const modalCloseBtn = document.querySelector('.modal-close-btn');
 const addToDoBtn = document.querySelector('#add-todo');
 const toDoListDOM = document.querySelector('.todo-list');
+const toDoListDOMcompleted = document.querySelector('.completed-todo-list');
 const USER_NAME = 'user-name';
 const ADD_TO_DO = 'add-to-do';
 const ToDoList = [];
@@ -92,7 +93,7 @@ const addModalContent = (type) => {
       'Enter task',
       'create-task'
     );
-    modal.append(formWrapper);
+    modal.append(formWrapper);   
     const form = document.querySelector('#add-task-form');
     form.addEventListener('submit', addTaskHandler);
   } else if (type === USER_NAME) {
