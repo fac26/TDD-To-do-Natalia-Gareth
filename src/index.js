@@ -125,8 +125,9 @@ function createForm(formId, labelText, inputId) {
 </form>`;
 }
 
-function taskDeleteHandler() {
-  console.log('');
+function taskDeleteHandler(e) {
+  e.target
+  return true;
 }
 
 
