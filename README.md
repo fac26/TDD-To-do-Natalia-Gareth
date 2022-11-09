@@ -2,7 +2,7 @@
 
 ## A FAC26 TDD project 
 
-### Why would you want you to red this code?
+### Why would you want you to read this code?
 
 This code has been written for a FAC26 project on Test Driven Development (TDD). You may wish to review the code or just learn more about TDD.
 
