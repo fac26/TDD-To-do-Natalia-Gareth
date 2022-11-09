@@ -125,6 +125,11 @@ function createForm(formId, labelText, inputId) {
 </form>`;
 }
 
+function taskDeleteHandler() {
+
+}
+
+
 addToDoBtn.addEventListener('click', addToDoHandler);
 modalCloseBtn.addEventListener('click', resetModal);
-
+toDoListDOM.addEventListener('click', taskDeleteHandler);
