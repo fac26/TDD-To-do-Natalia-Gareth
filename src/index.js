@@ -126,7 +126,7 @@ function createForm(formId, labelText, inputId) {
 }
 
 function taskDeleteHandler() {
-
+  console.log('');
 }
 
 
