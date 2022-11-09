@@ -107,6 +107,14 @@ test ('toggleCompleted() ev handler should display task in appropriate list',()=
     toDoListDOMcompleted.innerHTML='';
 
 });
+
+test('delete button event handler should console log clicked', () => {
+    const actual = 
+})
+
+
+
+
 /***************************************************************** */
 // Create form html tests
 
