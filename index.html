@@ -13,7 +13,9 @@
   <body>
     <template>
       <li class="to-do-item">
-        <label><input type="checkbox" /><span></span></label>
+        <label
+          ><input type="checkbox" /><span class="task-content"></span
+        ></label>
         <button>Delete</button>
       </li>
     </template>
@@ -38,8 +40,14 @@
       <button id="add-todo">Add TO-DO</button>
     </div>
     <div class="todo-list--container">
-      <ul class="todo-list"></ul>
-      <ul class="completed-todo-list"></ul>
+      <div>
+        <h3>To do</h3>
+        <ul class="todo-list"></ul>
+      </div>
+      <div>
+        <h3>Completed</h3>
+        <ul class="completed-todo-list"></ul>
+      </div>
     </div>
   </body>
 </html>

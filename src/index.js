@@ -31,11 +31,10 @@ const resetModal = () => {
   removeBackdrop();
 };
 
-const toggleTick=(li, status)=>{
-  /*const label = window.getComputedStyle(li.querySelector('label'), '::before');
-  if(status===true){
-    label.content='✔️';
-  }*/
+const addDone=()=>{
+  const div = document.createElement('span');
+  div.classList.add('done');
+  return div;
 }
 
 const toggleCompleted = (ev) => {
@@ -43,9 +42,12 @@ const toggleCompleted = (ev) => {
   const task = ToDoList.find(el=> el.id === li.getAttribute('id'));
   task.completed = !task.completed;//toggle
   li.dataset.completed = task.completed;
-  if(task.completed===true){
+  const label = li.querySelector('label');
+  if(task.completed===true){    
+    label.append(addDone());
     toDoListDOMcompleted.prepend(li);
   } else {
+    label.removeChild(label.querySelector('.done'));
     toDoListDOM.prepend(li);
   }
 };

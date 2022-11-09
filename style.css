@@ -102,7 +102,7 @@ li {
   margin-right: auto;
   max-width: 80%;
 }
-.completed-todo-list>*,
+.completed-todo-list > *,
 .todo-list > * {
   display: flex;
   justify-content: space-between;
@@ -111,13 +111,31 @@ li {
   border-bottom: 2px solid black;
   max-width: 700px;
 }
-/*.to-do-item label::before {
-  content: '';/*✔️/*
+.to-do-item label::before {
+  content: '';
   width: 22px;
   height: 25px;
-  border: 2px solid black;
+  border: 2px solid #6c2c01;
   position: absolute;
-}*/
+  border-radius: 5px;
+}
+.to-do-item label {
+  position: relative;
+}
+.to-do-item label input {
+  opacity: 0;
+}
+.task-content {
+  margin-left: 1rem;
+}
+.done {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+}
+.done::before {
+  content: '✔️';
+}
 /*end to-do-list block*/
 
 @media only screen and (min-width: 800px) {
