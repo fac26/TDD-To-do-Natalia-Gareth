@@ -114,7 +114,7 @@ test('delete button event handler should console log clicked', () => {
     console.log(deleteButton);  
     
     const actual = deleteButton.click(); 
-    const expected = true;
+    const expected = 'clicked';
 
     equal(actual, expected);
 })
