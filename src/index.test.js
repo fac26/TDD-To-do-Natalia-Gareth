@@ -101,7 +101,11 @@ test ('toggleCompleted() ev handler should display task in appropriate list',()=
     console.log('clicked');
     expected = '[incomplete tasks list contains task = true]';
     actual = `[incomplete tasks list contains task = ${toDoListDOM.contains(toDoListDOM.childNodes[0])}]`;
-    equal(actual, expected);   
+    equal(actual, expected); 
+    ToDoList.length=0;
+    toDoListDOM.innerHTML='';
+    toDoListDOMcompleted.innerHTML='';
+
 });
 /***************************************************************** */
 // Create form html tests
