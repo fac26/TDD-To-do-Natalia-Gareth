@@ -95,6 +95,7 @@ const addModalContent = (type) => {
     );
     modal.append(formWrapper);   
     const form = document.querySelector('#add-task-form');
+    form.querySelector('input').focus();
     form.addEventListener('submit', addTaskHandler);
   } else if (type === USER_NAME) {
     //call add name from Gareth with different input type to handle user name and store it
