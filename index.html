@@ -29,22 +29,22 @@
       </div>
     </div>
     <div class="heading-actions">
-      <form action="">
+      <form id="filter-form">
         <label for="filter">Filter</label>
         <select name="filter" id="filter">
           <option value="all" selected>All</option>
-          <option value="done">Complited</option>
-          <option value="ongoing" selected>Uncompleted</option>
+          <option value="uncompleted">Uncompleted</option>
+          <option value="completed">Completed</option>          
         </select>
       </form>
       <button id="add-todo">Add TO-DO</button>
     </div>
     <div class="todo-list--container">
-      <div>
+      <div class="todo-list--container-uncompleted">
         <h3>To do</h3>
         <ul class="todo-list"></ul>
       </div>
-      <div>
+      <div class="todo-list--container-completed">
         <h3>Completed</h3>
         <ul class="completed-todo-list"></ul>
       </div>

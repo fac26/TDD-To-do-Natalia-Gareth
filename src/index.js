@@ -1,5 +1,12 @@
 const backdrop = document.getElementById('backdrop');
 const modal = document.querySelector('.modal');
+const filterEl = document.querySelector('#filter-form');
+const uncompletedContainer = document.querySelector(
+  '.todo-list--container-uncompleted'
+);
+const completedContainer = document.querySelector(
+  '.todo-list--container-completed'
+);
 const modalCloseBtn = document.querySelector('.modal-close-btn');
 const addToDoBtn = document.querySelector('#add-todo');
 const toDoListDOM = document.querySelector('.todo-list');
@@ -31,19 +38,19 @@ const resetModal = () => {
   removeBackdrop();
 };
 
-const addDone=()=>{
+const addDone = () => {
   const div = document.createElement('span');
   div.classList.add('done');
   return div;
-}
+};
 
 const toggleCompleted = (ev) => {
-  const li = ev.target.closest('li');  
-  const task = ToDoList.find(el=> el.id === li.getAttribute('id'));
-  task.completed = !task.completed;//toggle
+  const li = ev.target.closest('li');
+  const task = ToDoList.find((el) => el.id === li.getAttribute('id'));
+  task.completed = !task.completed; //toggle
   li.dataset.completed = task.completed;
   const label = li.querySelector('label');
-  if(task.completed===true){    
+  if (task.completed === true) {
     label.append(addDone());
     toDoListDOMcompleted.prepend(li);
   } else {
@@ -71,7 +78,11 @@ const renderTask = (task) => {
 };
 
 const addToDoItem = (value) => {
-  const task = { title: value, completed: false, id: new Date().getTime().toString()};
+  const task = {
+    title: value,
+    completed: false,
+    id: new Date().getTime().toString(),
+  };
   ToDoList.push(task);
   renderTask(task);
 };
@@ -99,7 +110,7 @@ const addModalContent = (type) => {
       'Enter task',
       'create-task'
     );
-    modal.append(formWrapper);   
+    modal.append(formWrapper);
     const form = document.querySelector('#add-task-form');
     form.querySelector('input').focus();
     form.addEventListener('submit', addTaskHandler);
@@ -127,6 +138,20 @@ function createForm(formId, labelText, inputId) {
 </form>`;
 }
 
+const filterHandler = (ev) => {
+  const value = ev.target.value;
+  if (value === 'uncompleted') {
+    completedContainer.classList.add('invisible');
+    uncompletedContainer.classList.remove('invisible');
+  } else if (value === 'completed') {
+    uncompletedContainer.classList.add('invisible');
+    completedContainer.classList.remove('invisible');
+  } else if (value === 'all') {
+    completedContainer.classList.remove('invisible');
+    uncompletedContainer.classList.remove('invisible');
+  }
+};
+
 addToDoBtn.addEventListener('click', addToDoHandler);
 modalCloseBtn.addEventListener('click', resetModal);
-
+filterEl.addEventListener('change', filterHandler);
