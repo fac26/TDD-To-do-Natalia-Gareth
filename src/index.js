@@ -57,6 +57,7 @@ const toggleCompleted = (ev) => {
     label.removeChild(label.querySelector('.done'));
     toDoListDOM.prepend(li);
   }
+  updateLocalStorage(ToDoList);
 };
 
 const createLi = (newTask) => {
@@ -77,13 +78,14 @@ const renderTask = (task) => {
   toDoListDOM.prepend(taskElement); //add task to the top
 };
 
-const addToDoItem = (value) => {
+const addToDoItem = (value, completed, taskId) => {
   const task = {
     title: value,
-    completed: false,
-    id: new Date().getTime().toString(),
+    completed: completed||false,
+    id: taskId||new Date().getTime().toString(),
   };
   ToDoList.push(task);
+  updateLocalStorage(ToDoList);
   renderTask(task);
 };
 
@@ -152,6 +154,7 @@ const filterHandler = (ev) => {
   }
 };
 
+getItemsFromLocalStorage(ToDoList);
 addToDoBtn.addEventListener('click', addToDoHandler);
 modalCloseBtn.addEventListener('click', resetModal);
 filterEl.addEventListener('change', filterHandler);
