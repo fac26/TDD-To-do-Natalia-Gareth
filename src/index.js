@@ -127,11 +127,20 @@ function createForm(formId, labelText, inputId) {
 
 function taskDeleteHandler(e) {
 
-  console.log(e.target);
-  return e.target; 
+  const li = e.target.closest('li');
+  const id = li.getAttribute('id');
+  console.log(li);
+  console.log(id);
+  const task = ToDoList.find(el => el.id === id);
+  console.log(task);
+  if (task.completed) {
+    toDoListDOMcompleted.removeChild(li);
+  } else {
+    toDoListDOM.removeChild(li);
+  }
 }
 
 
 addToDoBtn.addEventListener('click', addToDoHandler);
 modalCloseBtn.addEventListener('click', resetModal);
-toDoListDOM.addEventListener('click', taskDeleteHandler);
+document.addEventListener('click', taskDeleteHandler);
