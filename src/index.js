@@ -158,7 +158,7 @@ function taskDeleteHandler(e) {
     toDoListDOM.removeChild(li);
   }
 
-  ToDoList.splice(ToDoList.findIndex(el => el.id === id));
+  ToDoList.splice(ToDoList.findIndex(el => el.id === id), 1);
 }
 }
 
