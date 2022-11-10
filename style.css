@@ -46,19 +46,30 @@ li {
 .visible {
   display: block !important;
 }
-.invisible{
+.invisible {
   display: none !important;
 }
 .error {
   border: 2px solid red;
 }
 /*end general styles*/
+header {
+  width: 80%;
+  max-width: 700px;
+  margin: 2rem auto;
+}
+header h1{
+  text-align: center;
+}
 
 /*heading action*/
 .heading-actions {
   display: flex;
   justify-content: space-between;
-  margin: 2rem;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+  max-width: 700px;
 }
 
 #filter {
@@ -96,14 +107,25 @@ li {
   background: white;
   border: 2px solid #f0f0f0;
 }
-
+.form-title {
+  text-align: center;
+}
+#add-task-form {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+.form-wrapper {
+  margin: 3rem 0;
+}
 /*end heading action*/
 
 /*to-do-list block */
 .todo-list--container {
   margin-left: auto;
   margin-right: auto;
-  max-width: 80%;
+  width: 80%;
+  max-width: 700px;
 }
 .completed-todo-list > *,
 .todo-list > * {
