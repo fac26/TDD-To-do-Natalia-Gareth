@@ -156,6 +156,7 @@ function taskDeleteHandler(e) {
       }
 
       ToDoList.splice(ToDoList.findIndex(el => el.id === id), 1);
+      updateLocalStorage(ToDoList);
   }
 }
 
