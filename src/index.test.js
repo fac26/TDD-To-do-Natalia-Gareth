@@ -108,15 +108,19 @@ test ('toggleCompleted() ev handler should display task in appropriate list',()=
 
 });
 
-test('delete button event handler should return value of clicked', () => {
-    addToDoItem('walk dog');
-    const deleteButton = toDoListDOM.lastElementChild.lastElementChild;
-    console.log(deleteButton);  
+// test('delete button event handler should return value of clicked', () => {
+//     addToDoItem('walk dog');
+//     const deleteButton = toDoListDOM.lastElementChild.lastElementChild;
+//     console.log(deleteButton);  
     
-    const actual = deleteButton.click(); 
-    const expected = 'clicked';
+//     const actual = deleteButton.click(); 
+//     const expected = 'clicked';
 
-    equal(actual, expected);
+//     equal(actual, expected);
+// })
+
+test('when clicked delete button should remove associated task', () => {
+    
 })
 
 
