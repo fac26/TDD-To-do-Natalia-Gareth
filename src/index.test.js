@@ -110,15 +110,11 @@ test('when clicked delete button should remove associated task', () => {
     addToDoItem('wash the cat');
     const id = ToDoList.find(el => el.title === 'wash the cat').id;
     const deleteButton = document.getElementById(id).querySelector('button');
-    console.log(deleteButton);
     deleteButton.click();
     const result = document.getElementById(id);
-
     const actual = result == undefined || null ? '[removed from DOM]' : result;
     const expected = '[removed from DOM]';
-
     equal(actual, expected);
-
     updateLocalStorage(ToDoList);
 })
 
