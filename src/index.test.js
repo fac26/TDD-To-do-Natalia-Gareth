@@ -108,26 +108,6 @@ test ('toggleCompleted() ev handler should display task in appropriate list',()=
 
 });
 
-// test('delete button event handler should return value of clicked', () => {
-//     addToDoItem('walk dog');
-//     const deleteButton = toDoListDOM.lastElementChild.lastElementChild;
-      
-//     let event;
-//     deleteButton.addEventListener('click', (e) => {
-//         event = e.target;
-//     })
-//     deleteButton.click();
-//     console.log(event);
-//     console.log(deleteButton);
-//     const actual = taskDeleteHandler(event);
-//     const expected = deleteButton;
-
-//     equal(actual, expected);
-//     // ToDoList.length=0;
-//     // toDoListDOM.innerHTML='';
-
-// })
-
 test('when clicked delete button should remove associated task', () => {
     addToDoItem('wash the cat');
     const id = ToDoList.find(el => el.title === 'wash the cat').id;
@@ -136,41 +116,11 @@ test('when clicked delete button should remove associated task', () => {
     deleteButton.click();
     const result = document.getElementById(id);
 
-    const actual = result === undefined ? '[removed from DOM]' : result;
+    const actual = result == undefined || null ? '[removed from DOM]' : result;
     const expected = '[removed from DOM]';
 
     equal(actual, expected);
 })
-
-
-
-
-/***************************************************************** */
-// Create form html tests
-
-// test('fn should return new html', () => {
-//   const actual = createTaskHtml();
-//   const expected = `<p></p>`;
-//   equal(actual, expected);
-// })
-
-// test('fn should return new html form', () => {
-//   const actual = createTaskHtml();
-//   const expected = `<form action="">
-//   <fieldset>
-//     <legend>
-//       <label for="create-task">Create your to-do task</label>
-//       <input 
-//       type="text"
-//       id="create-task"
-//       name="create-task"
-//       required
-//       >
-//     </legend>
-//   </fieldset>
-// </form>`;
-//   equal(actual, expected);
-// })
 
 test('createForm() should return form', () => {
   const form = createForm();
