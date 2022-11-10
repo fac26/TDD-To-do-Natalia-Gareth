@@ -108,7 +108,7 @@ test ('toggleCompleted() ev handler should display task in appropriate list',()=
 
 });
 
-test('delete button event handler should console log clicked', () => {
+test('delete button event handler should return value of clicked', () => {
     addToDoItem('walk dog');
     const deleteButton = toDoListDOM.lastElementChild.lastElementChild;
     console.log(deleteButton);  
