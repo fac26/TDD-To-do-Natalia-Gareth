@@ -144,26 +144,20 @@ function createForm(formId, labelText, inputId) {
 
 
 function taskDeleteHandler(e) {
-  if (e.target.tagName.toLowerCase() === 'button'
-  ) {
-  const li = e.target.closest('li');
-  const id = li.getAttribute('id');
-  console.log(li);
-  console.log(id);
-  const task = ToDoList.find(el => el.id === id);
-  console.log(task);
-  if (task.completed) {
-    toDoListDOMcompleted.removeChild(li);
-  } else {
-    toDoListDOM.removeChild(li);
+    if (e.target.tagName.toLowerCase() === 'button'
+    ) {
+      const li = e.target.closest('li');
+      const id = li.getAttribute('id');
+      const task = ToDoList.find(el => el.id === id);
+      if (task.completed) {
+        toDoListDOMcompleted.removeChild(li);
+      } else {
+        toDoListDOM.removeChild(li);
+      }
+
+      ToDoList.splice(ToDoList.findIndex(el => el.id === id), 1);
   }
-
-  ToDoList.splice(ToDoList.findIndex(el => el.id === id), 1);
 }
-}
-
-
-
 
 const filterHandler = (ev) => {
   const value = ev.target.value;
