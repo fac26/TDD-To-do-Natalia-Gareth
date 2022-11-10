@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
+    <script src="./src/localstorage.js" defer></script>
     <script src="./src/test-helpers.js" defer></script>
     <script src="./src/index.js" defer></script>
     <script src="./src/index.test.js" defer></script>
@@ -13,7 +14,9 @@
   <body>
     <template>
       <li class="to-do-item">
-        <label><input type="checkbox" /><span></span></label>
+        <label
+          ><input type="checkbox" /><span class="task-content"></span
+        ></label>
         <button>Delete</button>
       </li>
     </template>
@@ -27,19 +30,25 @@
       </div>
     </div>
     <div class="heading-actions">
-      <form action="">
+      <form id="filter-form">
         <label for="filter">Filter</label>
         <select name="filter" id="filter">
           <option value="all" selected>All</option>
-          <option value="done">Complited</option>
-          <option value="ongoing" selected>Uncompleted</option>
+          <option value="uncompleted">Uncompleted</option>
+          <option value="completed">Completed</option>
         </select>
       </form>
       <button id="add-todo">Add TO-DO</button>
     </div>
     <div class="todo-list--container">
-      <ul class="todo-list"></ul>
-      <ul class="completed-todo-list"></ul>
+      <div class="todo-list--container-uncompleted">
+        <h3>To do</h3>
+        <ul class="todo-list"></ul>
+      </div>
+      <div class="todo-list--container-completed">
+        <h3>Completed</h3>
+        <ul class="completed-todo-list"></ul>
+      </div>
     </div>
   </body>
 </html>

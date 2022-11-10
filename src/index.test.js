@@ -3,7 +3,7 @@
 test('addModalContent expected to get an argument and return user-name if argument is user-name', ()=>{
     const actual=addModalContent('user-name');
     const expected='user-name';
-    equal(actual, expected)
+    equal(actual, expected);
 });
 
 test('when button Add-to-do was clicked, modal shows form with id=add-task-form',()=>{
@@ -12,7 +12,7 @@ test('when button Add-to-do was clicked, modal shows form with id=add-task-form'
     const form = document.getElementById('add-task-form');
     const actual=document.body.contains(form);
     const expected= true;
-    equal(actual, expected)
+    equal(actual, expected);
 });
 test('click submit should remove form from modal',()=>{
     const form = document.getElementById('add-task-form');
@@ -25,6 +25,7 @@ test('click submit should remove form from modal',()=>{
     const id = ToDoList.find(el=> el.title === 'remove-form-test').id;
     toDoListDOM.removeChild(document.getElementById(id));
     ToDoList.splice(ToDoList.findIndex(el=>el.id===id), 1);
+    updateLocalStorage(ToDoList);
 });
 
 test('addToDoItem("handle event listener") should add item to ToDoList array', ()=>{
@@ -33,12 +34,10 @@ test('addToDoItem("handle event listener") should add item to ToDoList array', (
     const actual= task? '[item in ToDoList]': '[item was\'t found in ToDoList]';
     const expected='[item in ToDoList]';
     equal(actual, expected); 
-    console.log(ToDoList)
-    toDoListDOM.innerHTML='';
-    ToDoList.length=0;
-    /*toDoListDOM.removeChild(document.getElementById(task.id));
-    ToDoList.splice(ToDoList.findIndex(el=>el.id===task.id), 1);*/
-});
+    toDoListDOM.removeChild(document.getElementById(task.id));
+    ToDoList.splice(ToDoList.findIndex(el=>el.id===task.id), 1);
+    updateLocalStorage(ToDoList);
+    });
 
 test('createLi() should return li HTML element',()=>{
     const li = createLi({title:'test <li>', completed:false, id:'test-li'});
@@ -52,8 +51,7 @@ test('createLi({title:"test", completed: true}) should return input\'s dataset.c
     const expected = 'true';//from DOM
     const actual = li.dataset.completed;
     equal(actual, expected);
-    toDoListDOM.innerHTML='';
-    ToDoList.length=0;
+    
 });
 
 test ('toggleCompleted() ev handler should toggle dataset.completed of li el',()=>{
@@ -70,9 +68,9 @@ test ('toggleCompleted() ev handler should toggle dataset.completed of li el',()
     expected = 'data-completed = false';//from DOM
     actual = `data-completed = ${input.closest('li').dataset.completed}`;
     equal(actual, expected);
-    ToDoList.length=0;
-    toDoListDOM.innerHTML='';
-    toDoListDOMcompleted.innerHTML='';
+    toDoListDOM.removeChild(document.getElementById(task.id));
+    ToDoList.splice(ToDoList.findIndex(el=>el.id===task.id), 1);
+    updateLocalStorage(ToDoList);
 });
 
 test ('toggleCompleted() ev handler should find the task in ToDoList array and toggle task.completed value',()=>{
@@ -84,10 +82,11 @@ test ('toggleCompleted() ev handler should find the task in ToDoList array and t
     let expected = `{title: 'toggle completed', completed: true}`;
     let actual = `{title: '${task.title}', completed: ${task.completed}}`;
     equal(actual, expected);
-    ToDoList.length=0;
-    toDoListDOM.innerHTML='';
-    toDoListDOMcompleted.innerHTML='';
+    toDoListDOMcompleted.removeChild(document.getElementById(task.id));
+    ToDoList.splice(ToDoList.findIndex(el=>el.id===task.id), 1);
+    updateLocalStorage(ToDoList);
 });
+
 test ('toggleCompleted() ev handler should display task in appropriate list',()=>{
     addToDoItem('move list');
     const task = ToDoList.find(el=>el.title==='move list'); 
@@ -102,37 +101,26 @@ test ('toggleCompleted() ev handler should display task in appropriate list',()=
     expected = '[incomplete tasks list contains task = true]';
     actual = `[incomplete tasks list contains task = ${toDoListDOM.contains(toDoListDOM.childNodes[0])}]`;
     equal(actual, expected); 
-    ToDoList.length=0;
-    toDoListDOM.innerHTML='';
-    toDoListDOMcompleted.innerHTML='';
-
+    toDoListDOM.removeChild(document.getElementById(task.id));
+    ToDoList.splice(ToDoList.findIndex(el=>el.id===task.id), 1);
+    updateLocalStorage(ToDoList);
 });
-/***************************************************************** */
-// Create form html tests
 
-// test('fn should return new html', () => {
-//   const actual = createTaskHtml();
-//   const expected = `<p></p>`;
-//   equal(actual, expected);
-// })
+test('when clicked delete button should remove associated task', () => {
+    addToDoItem('wash the cat');
+    const id = ToDoList.find(el => el.title === 'wash the cat').id;
+    const deleteButton = document.getElementById(id).querySelector('button');
+    console.log(deleteButton);
+    deleteButton.click();
+    const result = document.getElementById(id);
 
-// test('fn should return new html form', () => {
-//   const actual = createTaskHtml();
-//   const expected = `<form action="">
-//   <fieldset>
-//     <legend>
-//       <label for="create-task">Create your to-do task</label>
-//       <input 
-//       type="text"
-//       id="create-task"
-//       name="create-task"
-//       required
-//       >
-//     </legend>
-//   </fieldset>
-// </form>`;
-//   equal(actual, expected);
-// })
+    const actual = result == undefined || null ? '[removed from DOM]' : result;
+    const expected = '[removed from DOM]';
+
+    equal(actual, expected);
+
+    updateLocalStorage(ToDoList);
+})
 
 test('createForm() should return form', () => {
   const form = createForm();
